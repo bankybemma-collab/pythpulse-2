@@ -29,7 +29,7 @@ const FEEDS = [
 
 // Build ONE single URL with all IDs — avoids batching CORS issues in StackBlitz
 const ALL_IDS = FEEDS.map(f => `ids[]=${f.id}`).join("&");
-const PYTH_URL = `https://hermes.pyth.network/v2/updates/price/latest?${ALL_IDS}&parsed=true`;
+const PYTH_URL = `/api/pyth/v2/updates/price/latest?${ALL_IDS}&parsed=true`;
 // Fallback proxy if direct call fails
 const PROXY_URL = `https://api.allorigins.win/raw?url=${encodeURIComponent(PYTH_URL)}`;
 
@@ -82,7 +82,7 @@ function DocsView({ feedCount }) {
         <div style={s.h2}>⚡ PYTH NETWORK INTEGRATION</div>
         <p style={s.p}>PythPulse uses the <strong style={{ color: "#C4B5FD" }}>Pyth Hermes REST API</strong> — free, public, no API key, no wallet required.</p>
         <div style={{ fontFamily: "monospace", fontSize: 9, padding: "10px 14px", background: "rgba(0,0,0,0.3)", borderRadius: 4, color: "#A78BFA", marginBottom: 10, overflowX: "auto" }}>
-          GET https://hermes.pyth.network/v2/updates/price/latest?ids[]=...&parsed=true
+          GET /api/pyth/v2/updates/price/latest?ids[]=...&parsed=true
         </div>
         <p style={s.p}>• All {feedCount} feeds fetched in a single API call every 3 seconds</p>
         <p style={s.p}>• Each update includes: price, confidence interval, exponent, and publish timestamp</p>
